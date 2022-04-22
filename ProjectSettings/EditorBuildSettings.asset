@@ -8,8 +8,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SceneUnderstanding/Examples/Home/Scenes/Home-Examples.unity
     guid: e0be1d44b746e4146a17c5eba3df5f4a
-  - enabled: 1
-    path: Assets/SceneUnderstanding/Examples/Understanding/Scenes/topScene.unity
+  - enabled: 0
+    path: Assets/top/scene/topScene.unity
     guid: 8363e805d88d4ae49910ab6b00697fa6
   - enabled: 0
     path: Assets/SceneUnderstanding/Examples/Understanding/Scenes/Understanding-Simple.unity
@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SceneUnderstanding/Examples/FloorMarker/Scenes/MarkerPlacement.unity
     guid: c65f98e30089167459fc130eeabfca3c
+  - enabled: 1
+    path: Assets/top/scene/MixedRealityKeyboardExample.unity
+    guid: a614725bb6a52954c91265c7091327dd
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 18a2f6611f96b4a4cb06ff402893bb9e,
       type: 2}

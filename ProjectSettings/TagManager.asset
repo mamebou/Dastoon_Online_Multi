@@ -5,6 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - NavAgent
+  - data1
+  - data0
+  - data2
+  - addDataButton
+  - data1Select
+  - data2Select
+  - data3Select
+  - data1Delete
+  - data2Delete
+  - data3Delete
   layers:
   - Default
   - TransparentFX

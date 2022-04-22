@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: LopezLab
-  productName: h_abe_Dustoon_Paint
+  productName: h_abe_Dastoon_paint
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -666,7 +666,7 @@ PlayerSettings:
       HumanInterfaceDevice: False
       Location: False
       Chat: False
-      Bluetooth: False
+      Bluetooth: True
       AllJoyn: False
       MusicLibrary: False
       LowLevelDevices: False
@@ -695,10 +695,10 @@ PlayerSettings:
       PointOfService: False
       RecordedCallsFolder: False
       Contacts: False
+      Proximity: False
       InternetClient: True
       CodeGeneration: False
       BackgroundMediaPlayback: False
-      Proximity: False
   metroTargetDeviceFamilies:
     Desktop: True
     Holographic: True
@@ -738,7 +738,14 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Analytics: 0
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -752,11 +759,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 3
   activeInputHandler: 2
-  cloudProjectId: fe3a76bb-4e8d-4741-9518-3bf04d551481
+  cloudProjectId: 2b7d2aa0-6946-48a4-978d-76c206af6bea
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Scene Understanding
-  organizationId: szymon-stachniak
+  projectName: h_abe_Dustoon_Paint
+  organizationId: mamebou
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   virtualTexturingSupportEnabled: 0
