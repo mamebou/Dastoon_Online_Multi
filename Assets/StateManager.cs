@@ -2,6 +2,7 @@ using Microsoft.MixedReality.SceneUnderstanding.Samples.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class StateManager : MonoBehaviour
 { 
@@ -14,10 +15,12 @@ public class StateManager : MonoBehaviour
     public float distance = 0f;
     private GameObject Brush;
     private Vector3 prevBrushPosition;
+    private String playerName;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerName = CanasController.getPlayerName();
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
         Brush = GameObject.Find("Brush");
         prevBrushPosition = Brush.transform.position;

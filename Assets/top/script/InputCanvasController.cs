@@ -12,12 +12,14 @@ public class InputCanvasController : MonoBehaviour
     private Interactable interact;
     private Text userName;
     private String[] key = {"data1", "data2", "data3"};
+    GameObject main;
 
     // Start is called before the first frame update
     void Start()
     {
         interact = addDataButton.GetComponent<Interactable>();
         interact.OnClick.AddListener(OnAddDataClick);
+        main =  GameObject.Find("Main");
     }
 
     // Update is called once per frame
@@ -38,6 +40,8 @@ public class InputCanvasController : MonoBehaviour
             }
         }
 
+        //保存したらcanvas切り替えの絶え目にTopControllerのメソッドを呼ぶ
+        main.GetComponent<TopController>().pressCreateData();
         Debug.Log(PlayerPrefs.GetString("data1Name"));
     }
 }

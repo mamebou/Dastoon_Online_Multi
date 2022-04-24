@@ -8,13 +8,16 @@ using UnityEngine.UI;  //Canvasをいじる時に使う
 public class TopController : MonoBehaviour
 {
     public TouchScreenKeyboard keyboard;
-    public GameObject select_canvas;
-    
+    public GameObject selectDataCanvas;
+    public GameObject newDataCanvas;
+    private GameObject selectCanvas;
+    private GameObject newCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
-        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default, false, false, false, false);
+        GameObject selectCanvas = Instantiate(selectDataCanvas);
+        selectCanvas.transform.position = new Vector3(0.0f, 0.0f, 0.5f);
     }
 
     // Update is called once per frame
@@ -23,8 +26,25 @@ public class TopController : MonoBehaviour
         
     }
 
-    public void changeScene(){
-        SceneManager.LoadScene("Understanding-Simple");
-        Debug.Log("button is pressed");
+    public void pressCreateData(){
+        newCanvas = GameObject.Find("NewDataCanvas(Clone)");
+        foreach(Transform child in newCanvas.transform){
+            Destroy(child.gameObject);
+        }
+        Destroy(newCanvas);
+        selectCanvas = Instantiate(selectDataCanvas);
+        selectCanvas.transform.position = new Vector3(0.0f, 0.0f, 0.5f);
+        Debug.Log("pressNewDatqa pressed");
+    }
+
+    public void pressNewData(){
+        selectCanvas = GameObject.Find("Canvas(Clone)");  
+        foreach(Transform child in selectCanvas.transform){
+            Destroy(child.gameObject);
+        }
+        Destroy(selectCanvas);
+        newCanvas = Instantiate(newDataCanvas);
+        newDataCanvas.transform.position = new Vector3(0.0f, 0.0f, 0.5f);
+        Debug.Log("pressCreateData pressed");
     }
 }
