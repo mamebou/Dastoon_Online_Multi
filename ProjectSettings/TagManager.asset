@@ -15,6 +15,9 @@ TagManager:
   - data1Delete
   - data2Delete
   - data3Delete
+  - data1Text
+  - data3Text
+  - data2Text
   layers:
   - Default
   - TransparentFX
