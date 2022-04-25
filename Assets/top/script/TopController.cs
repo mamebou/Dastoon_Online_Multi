@@ -17,7 +17,7 @@ public class TopController : MonoBehaviour
     void Start()
     {
         GameObject selectCanvas = Instantiate(selectDataCanvas);
-        selectCanvas.transform.position = new Vector3(0.0f, 0.0f, 0.5f);
+        selectCanvas.transform.position = new Vector3(0.0f, 0.0f, 1.5f);
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class TopController : MonoBehaviour
         }
         Destroy(newCanvas);
         selectCanvas = Instantiate(selectDataCanvas);
-        selectCanvas.transform.position = new Vector3(0.0f, 0.0f, 0.5f);
+        selectCanvas.transform.position = new Vector3(0.0f, 0.0f, 1.5f);
         Debug.Log("pressNewDatqa pressed");
     }
 
@@ -44,7 +44,7 @@ public class TopController : MonoBehaviour
         }
         Destroy(selectCanvas);
         newCanvas = Instantiate(newDataCanvas);
-        newDataCanvas.transform.position = new Vector3(0.0f, 0.0f, 0.5f);
+        newDataCanvas.transform.position = new Vector3(0.0f, 0.0f, 1.5f);
         Debug.Log("pressCreateData pressed");
     }
 }
