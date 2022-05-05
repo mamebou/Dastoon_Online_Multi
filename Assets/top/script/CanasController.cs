@@ -7,6 +7,7 @@ using UnityEngine.UI;//buttonを使用するときに使う
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class CanasController : MonoBehaviour
 {
@@ -98,14 +99,9 @@ public class CanasController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void DataSelect(int dataNum){
        playerName = PlayerPrefs.GetString(key[dataNum-1]+"Name");
+       SceneManager.LoadScene("Understanding-Simple");
     }
 
     public void DataDelete(int dataNum){  

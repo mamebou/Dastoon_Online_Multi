@@ -20,7 +20,6 @@ public class StateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerName = CanasController.getPlayerName();
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
         Brush = GameObject.Find("Brush");
         prevBrushPosition = Brush.transform.position;
