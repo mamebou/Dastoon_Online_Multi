@@ -15,10 +15,12 @@ namespace Es.InkPainter.Sample
 
 		private Material material;
 		private GameObject DustSensor;
+		private DustHander dustHander;
 		void Start()
         {
 			DustSensor = GameObject.Find("Main");
 			material = GetComponent<Renderer>().material;
+			dustHander = DustSensor.GetComponent<DustHander>();
 		}
 
 		public void Awake()
@@ -55,7 +57,7 @@ namespace Es.InkPainter.Sample
 			}
 
 			//brush.Color = from M5 via Bluetooth
-			brush.Color = DustSensor.GetComponent<DustHander>().SetColor();
+			brush.Color = dustHander.SetColor();
 			material.color = brush.Color;
 			GetComponent<MeshRenderer>().material.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
