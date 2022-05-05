@@ -37,16 +37,18 @@ public class CalScore : MonoBehaviour
 
     public void CalArea()
     {
-        //“h‚ç‚ê‚½”ÍˆÍ‚ÌŒvZB‚©‚È‚èd‚½‚¢(ŒvZ’†‚ÍƒtƒŠ[ƒY‚·‚é)
+        //ï¿½hï¿½ï¿½ê‚½ï¿½ÍˆÍ‚ÌŒvï¿½Zï¿½Bï¿½ï¿½ï¿½È‚ï¿½dï¿½ï¿½ï¿½ï¿½(ï¿½vï¿½Zï¿½ï¿½ï¿½Íƒtï¿½ï¿½ï¿½[ï¿½Yï¿½ï¿½ï¿½ï¿½)
         int allArea = 0;
         foreach (Transform childTransform in parentObject.transform)
         {
+            if(childTransform.gameObject.name=="Floor"){
             GameObject grandchild = childTransform.transform.GetChild(0).gameObject;
             int area = grandchild.transform.GetComponent<InkCanvas>().CompareRenderTexture();
             allArea += area;
+            }
         }
 
-        // ƒ^ƒCƒ}[ƒXƒgƒbƒv
+        // ï¿½^ï¿½Cï¿½}ï¿½[ï¿½Xï¿½gï¿½bï¿½v
         timerState = false;
 
         scoreText.text = "Your Score:\n" + allArea + "\nTime:" + countTime.ToString("F1") + "\nDist:" + stateManager.distance.ToString("F2");
@@ -55,7 +57,7 @@ public class CalScore : MonoBehaviour
 
     public void TimerStart()
     {
-        // ƒ^ƒCƒ}[ƒXƒ^[ƒg
+        // ï¿½^ï¿½Cï¿½}ï¿½[ï¿½Xï¿½^ï¿½[ï¿½g
         countTime = 0;
         timerState = true;
     }
