@@ -880,20 +880,25 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
                     //listOfGeometryGameObjToReturn.Add(gameObjectToReturn);
 
                     //ここにPlane作成用！
-                    var obj = new GameObject(suObject.Kind.ToString() + "Plane");
-                    Mesh mesh = gameObjectToReturn.transform.GetComponent<MeshFilter>().mesh;
-                    Bounds bounds = mesh.bounds;
-                    Vector3 originalSize = bounds.size;
-                    SquareMesh squareMesh = obj.AddComponent<SquareMesh>();
-                    Vector3[] vertices = new Vector3[] {
-                        new Vector3 (- originalSize.x / 2, - originalSize.y / 2, 0),
-                        new Vector3 (- originalSize.x / 2,  originalSize.y / 2, 0),
-                        new Vector3 (originalSize.x / 2 , - originalSize.y / 2, 0),
-                        new Vector3 (originalSize.x / 2,  originalSize.y / 2, 0),
-                    };
-                    squareMesh.MakePlane(vertices);
-                    obj.SetActive(true);
-                    listOfGeometryGameObjToReturn.Add(obj);
+                    if(suObject.Kind.ToString() == "Floor"){
+                        var obj = new GameObject(suObject.Kind.ToString() + "Plane");
+                        Mesh mesh = gameObjectToReturn.transform.GetComponent<MeshFilter>().mesh;
+                        Bounds bounds = mesh.bounds;
+                        Vector3 originalSize = bounds.size;
+                        SquareMesh squareMesh = obj.AddComponent<SquareMesh>();
+                        Vector3[] vertices = new Vector3[] {
+                            new Vector3 (- originalSize.x / 2, - originalSize.y / 2, 0),
+                            new Vector3 (- originalSize.x / 2,  originalSize.y / 2, 0),
+                            new Vector3 (originalSize.x / 2 , - originalSize.y / 2, 0),
+                            new Vector3 (originalSize.x / 2,  originalSize.y / 2, 0),
+                        };
+                        squareMesh.MakePlane(vertices);
+                        obj.SetActive(true);
+                        listOfGeometryGameObjToReturn.Add(obj);
+                    }
+                    else{
+                        //Destroy((GameObject)suObject);
+                    }
 
                     foreach (var material in gameObjectToReturn.GetComponent<Renderer>().materials)
                     {
