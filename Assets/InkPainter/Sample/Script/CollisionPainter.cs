@@ -35,6 +35,7 @@ namespace Es.InkPainter.Sample
 
 		public void OnCollisionStay(Collision collision)
 		{
+			Debug.Log("now collosion");
 			if(waitCount < wait)
 				return;
 			waitCount = 0;

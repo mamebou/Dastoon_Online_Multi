@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Es.InkPainter;
+using System;
 
 public class CalScore : MonoBehaviour
 {
@@ -14,9 +15,11 @@ public class CalScore : MonoBehaviour
 
     private GameObject main;
     StateManager stateManager;
+    private String playerName;
     // Start is called before the first frame update
     void Start()
     {
+        playerName = CanasController.getPlayerName();
         timerState = false;
         countTime = 0;
         scoreText= GetComponent<TextMeshPro>();
@@ -39,6 +42,7 @@ public class CalScore : MonoBehaviour
     {
         //�h��ꂽ�͈͂̌v�Z�B���Ȃ�d����(�v�Z���̓t���[�Y����)
         int allArea = 0;
+        int highScore = 0;
         foreach (Transform childTransform in parentObject.transform)
         {
             if(childTransform.gameObject.name=="Floor"){
@@ -51,7 +55,17 @@ public class CalScore : MonoBehaviour
         // �^�C�}�[�X�g�b�v
         timerState = false;
 
-        scoreText.text = "Your Score:\n" + allArea + "\nTime:" + countTime.ToString("F1") + "\nDist:" + stateManager.distance.ToString("F2");
+        if(PlayerPrefs.GetInt(playerName) == null){
+            PlayerPrefs.SetInt(playerName, allArea);
+            PlayerPrefs.Save();
+        }else if(PlayerPrefs.GetInt(playerName) < allArea){
+            PlayerPrefs.SetInt(playerName, allArea);
+            PlayerPrefs.Save();
+        }
+
+        highScore = PlayerPrefs.GetInt(playerName);
+
+        scoreText.text = playerName+ "'s Score:" + allArea + "\nTime:" + countTime.ToString("F1") + "\nDist:" + stateManager.distance.ToString("F2");
 
     }
 
