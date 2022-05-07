@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Es.InkPainter.Sample
 {
 	[RequireComponent(typeof(Collider), typeof(MeshRenderer))]
-	public class CollisionPainter : MonoBehaviour
+	public class CollisionPainterEnemy : MonoBehaviour
 	{
 		[SerializeField]
 		private Brush brush = null;
@@ -14,13 +14,11 @@ namespace Es.InkPainter.Sample
 		private int waitCount;
 
 		private Material material;
-		private GameObject DustSensor;
-		private DustHander dustHander;
+	
 		void Start()
         {
-			DustSensor = GameObject.Find("Main");
 			material = GetComponent<Renderer>().material;
-			dustHander = DustSensor.GetComponent<DustHander>();
+
 		}
 
 		public void Awake()
@@ -57,8 +55,8 @@ namespace Es.InkPainter.Sample
 			}
 
 			//brush.Color = from M5 via Bluetooth
-			brush.Color = dustHander.SetColor();
-			material.color = brush.Color;
+			brush.Color = new Color(50.0f, 50.0f, 50.0f, 1.0f);
+			material.color = new Color(50.0f, 50.0f, 50.0f, 0.5f);
 			GetComponent<MeshRenderer>().material.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
 			foreach (var p in collision.contacts)

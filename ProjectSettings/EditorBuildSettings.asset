@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SceneUnderstanding/Examples/Home/Scenes/Home-Examples.unity
     guid: e0be1d44b746e4146a17c5eba3df5f4a
-  - enabled: 0
+  - enabled: 1
     path: Assets/top/scene/topScene.unity
     guid: 8363e805d88d4ae49910ab6b00697fa6
-  - enabled: 0
+  - enabled: 1
     path: Assets/SceneUnderstanding/Examples/Understanding/Scenes/Understanding-Simple.unity
     guid: bc8988c6a8418fd4182034ccc312b3d5
   - enabled: 0
@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SceneUnderstanding/Examples/FloorMarker/Scenes/MarkerPlacement.unity
     guid: c65f98e30089167459fc130eeabfca3c
-  - enabled: 1
+  - enabled: 0
     path: Assets/top/scene/MixedRealityKeyboardExample.unity
     guid: a614725bb6a52954c91265c7091327dd
   m_configObjects:
