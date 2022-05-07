@@ -357,7 +357,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wait: 3
   enemy: {fileID: 8160206176921156590}
-  sceneRoot: {fileID: 0}
 --- !u!54 &8160206176921156592
 Rigidbody:
   m_ObjectHideFlags: 0

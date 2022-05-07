@@ -1,4 +1,5 @@
 using Microsoft.MixedReality.SceneUnderstanding.Samples.Unity;
+using Microsoft.MixedReality.SceneUnderstanding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class StateManager : MonoBehaviour
     private Vector3 prevBrushPosition;
     private String playerName;
     private bool isCreate = true;
+    public GameObject sceneRoot;
+    private System.Random rand = new System.Random();
 
     [SerializeField]
 	private GameObject enemy;
@@ -38,7 +41,7 @@ public class StateManager : MonoBehaviour
         if (currentTime > span)//1秒おきに呼ばれる
         {
             distance += Vector3.Distance(Brush.transform.position, prevBrushPosition); ;
-            Debug.Log(distance);
+            //Debug.Log(distance);
             prevBrushPosition = Brush.transform.position;
             currentTime = 0f;
         }
@@ -46,9 +49,8 @@ public class StateManager : MonoBehaviour
         //敵の生成
         if(isCreate){
             if(createTime > 5f){
-                enemy = Instantiate(enemy);
+                createEnemy();
                 isCreate = false;
-                createTime = 0f;
             }  
         }
         //ここまで
@@ -59,5 +61,30 @@ public class StateManager : MonoBehaviour
     {
         SceneUnderstanding.GetComponent<SceneUnderstandingManager>().DisplayScanPlanes = true;
 
+    }
+
+    public void createEnemy(){
+        Transform[] allFloor = GetAllChild(sceneRoot);
+        int numFloor = allFloor.Length;
+        int enemyPlace = rand.Next(0, numFloor - 1);
+        Transform pos = allFloor[enemyPlace];
+        enemy = Instantiate(enemy, new Vector3(pos.position.x, pos.position.y + 10f, pos.position.z), new Quaternion(0f, 0f, 0f, 0f));
+        Debug.Log(pos.rotation);
+    }
+
+    private Transform[] GetAllChild(GameObject rootObject){
+        int pos = 0;
+        Transform[] sceneObjects = new Transform[rootObject.transform.childCount];
+ 
+        for (int i = 0; i < rootObject.transform.childCount; i++)
+        {
+            if(rootObject.transform.GetChild(i).name == "Floor"){
+                sceneObjects[pos] = rootObject.transform.GetChild(i);
+                pos++;
+            }
+        }
+        Array.Resize(ref sceneObjects, pos);
+
+        return sceneObjects;
     }
 }
