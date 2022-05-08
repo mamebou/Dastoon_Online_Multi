@@ -1340,7 +1340,7 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
         {
             if (unityObject == null || mesh == null || material == null)
             {
-                Debug.Log("SceneUnderstandingManager.AddMeshToUnityObject: One or more arguments are null");
+                //Debug.Log("SceneUnderstandingManager.AddMeshToUnityObject: One or more arguments are null");
             }
 
             MeshFilter mf = unityObject.AddComponent<MeshFilter>();
@@ -1357,7 +1357,7 @@ namespace Microsoft.MixedReality.SceneUnderstanding.Samples.Unity
         {
             if (quad == null || gameobject == null)
             {
-                Debug.LogWarning("SceneUnderstandingManager.ApplyQuadRegionMask: One or more arguments are null.");
+                //Debug.LogWarning("SceneUnderstandingManager.ApplyQuadRegionMask: One or more arguments are null.");
                 return;
             }
 
