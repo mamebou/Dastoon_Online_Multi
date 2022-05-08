@@ -48,7 +48,7 @@ public class StateManager : MonoBehaviour
 
         //敵の生成
         if(isCreate){
-            if(createTime > 5f){
+            if(createTime > 5f && sceneRoot.transform.childCount != 0){
                 createEnemy();
                 isCreate = false;
             }  
@@ -69,7 +69,6 @@ public class StateManager : MonoBehaviour
         int enemyPlace = rand.Next(0, numFloor - 1);
         Transform pos = allFloor[enemyPlace];
         enemy = Instantiate(enemy, new Vector3(pos.position.x, pos.position.y + 10f, pos.position.z), new Quaternion(0f, 0f, 0f, 0f));
-        Debug.Log(pos.rotation);
     }
 
     private Transform[] GetAllChild(GameObject rootObject){
