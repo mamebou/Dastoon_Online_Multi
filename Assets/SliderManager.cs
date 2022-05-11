@@ -6,7 +6,7 @@ using UnityEngine;
 //掃除機のサイズ調整
 public class SliderManager : MonoBehaviour
 {
-    private GameObject brush;
+    public GameObject brush;
     // Start is called before the first frame update
     void Start()
     {
