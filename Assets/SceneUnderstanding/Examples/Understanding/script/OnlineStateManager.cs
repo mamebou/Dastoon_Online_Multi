@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using Microsoft.MixedReality.SceneUnderstanding.Samples.Unity;
 using Microsoft.MixedReality.SceneUnderstanding;
 using TMPro;
+using Photon.Pun;
 
-public class OnlineStateManager : MonoBehaviour
+public class OnlineStateManager : MonoBehaviourPunCallbacks
 {
-    public String player1;
-    public String player2;
+    public String player1 = null;
+    public String player2 = null;
     public bool player1Ready = false;
     public bool player2Ready = false;
     public bool isStart = true;
@@ -21,10 +23,14 @@ public class OnlineStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(player1);
-        Debug.Log(player2);
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
         CountDownText = GameObject.Find("CountDwon").GetComponent<TextMeshPro>();
+        if(player1 == null){
+            photonView.RPC(nameof(SetName), RpcTarget.All, player2);
+        }
+        else{
+            photonView.RPC(nameof(SetName), RpcTarget.All, player1);
+        }
     }
 
     // Update is called once per frame
@@ -45,4 +51,14 @@ public class OnlineStateManager : MonoBehaviour
           }
       }
     }
+
+   [PunRPC]
+   private void SetName(String PlayerName){
+       if(player1 == null){
+           player2 = PlayerName;
+       }
+       else{
+           player1 = PlayerName;
+       }
+   }
 }
