@@ -21,6 +21,8 @@ public class OnlineStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(player1);
+        Debug.Log(player2);
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
         CountDownText = GameObject.Find("CountDwon").GetComponent<TextMeshPro>();
     }
