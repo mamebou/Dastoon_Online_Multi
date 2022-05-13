@@ -47,7 +47,7 @@ public class CalScore : MonoBehaviour
         {
             if(childTransform.gameObject.name=="Floor"){
             GameObject grandchild = childTransform.transform.GetChild(0).gameObject;
-            int area = grandchild.transform.GetComponent<InkCanvas>().CompareRenderTexture();
+            int area = grandchild.transform.GetComponent<InkCanvas>().CompareRenderTexture(new Color(1.0f, 0.5f, 0.0f, 1.0f));
             allArea += area;
             }
         }

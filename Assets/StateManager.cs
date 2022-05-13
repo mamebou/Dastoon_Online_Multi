@@ -21,6 +21,7 @@ public class StateManager : MonoBehaviour
     private bool isCreate = true;
     public GameObject sceneRoot;
     private System.Random rand = new System.Random();
+    public int playerNum;
 
     [SerializeField]
 	private GameObject enemy;
@@ -61,6 +62,16 @@ public class StateManager : MonoBehaviour
     {
         SceneUnderstanding.GetComponent<SceneUnderstandingManager>().DisplayScanPlanes = true;
 
+    }
+
+    public void Ready(){
+        GameObject onlineStateManager = GameObject.Find("OnlineStateManager(Clone)");
+        if(playerNum == 1){
+            onlineStateManager.GetComponent<OnlineStateManager>().player1Ready = true;
+        }
+        else if(playerNum == 2){
+            onlineStateManager.GetComponent<OnlineStateManager>().player2Ready = true;
+        }
     }
 
     public void createEnemy(){

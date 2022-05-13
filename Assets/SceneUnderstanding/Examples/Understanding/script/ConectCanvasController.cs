@@ -1,25 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class EnemyController : MonoBehaviour
+public class ConectCanvasController : MonoBehaviour
 {
-
-    [SerializeField]
-	private int wait = 3;
-
-    [SerializeField]
-	private GameObject enemy;
-
     // Start is called before the first frame update
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(0.001f, 0, 0);
+        
     }
 }
