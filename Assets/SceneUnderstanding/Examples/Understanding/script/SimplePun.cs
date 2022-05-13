@@ -35,7 +35,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
-        if(!GameObject.Find("OnlineStateManager")){
+        if(!GameObject.Find("OnlineStateManager(Clone)")){
             onlineStateManager = PhotonNetwork.Instantiate("onlineStateManager", Vector3.zero, Quaternion.identity, 0);
             onlineStateManager.GetComponent<OnlineStateManager>().player1 = playerName;
             stateManager.GetComponent<StateManager>().playerNum = 1;
