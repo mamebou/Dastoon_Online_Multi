@@ -9,6 +9,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public GameObject onlineStateManager;
     private String playerName;
     public GameObject stateManager;
+    int playerNum;
 
     // Use this for initialization
     void Start () {
@@ -29,22 +30,35 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     //ルームに入室前に呼び出される
     public override void OnConnectedToMaster() {
-        // "room"という名前のルームに参加する（ルームが無ければ作成してから参加する）
-        PhotonNetwork.JoinOrCreateRoom("room", new RoomOptions(), TypedLobby.Default);
+        bool isJoin = PhotonNetwork.JoinRandomRoom();
+        if (isJoin)
+            playerNum = 2;
     }
+
+     // ランダムで参加できるルームが存在しないなら、新規でルームを作成する
+    public override void OnJoinRandomFailed(short returnCode, string message) {
+        // ルームの参加人数を2人に設定する
+        playerNum = 1;
+        var roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 2;
+
+        PhotonNetwork.CreateRoom(null, roomOptions);
+    }
+
 
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
         GameObject go = GameObject.Find("OnlineStateManager(Clone)");
-        if(GameObject.Find("OnlineStateManager(Clone)") == null){
+        if(playerNum == 1){
             onlineStateManager = PhotonNetwork.Instantiate("onlineStateManager", Vector3.zero, Quaternion.identity, 0);
             onlineStateManager.GetComponent<OnlineStateManager>().player1 = playerName;
             stateManager.GetComponent<StateManager>().playerNum = 1;
         }
-        else{
+        else if(playerNum == 2){
             onlineStateManager = GameObject.Find("OnlineStateManager");
             onlineStateManager.GetComponent<OnlineStateManager>().player2 = playerName;
             stateManager.GetComponent<StateManager>().playerNum = 2;
         }
+        Debug.Log(playerNum);
     }
 }
