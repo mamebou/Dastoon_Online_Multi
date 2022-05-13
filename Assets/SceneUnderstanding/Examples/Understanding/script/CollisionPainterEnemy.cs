@@ -55,8 +55,8 @@ namespace Es.InkPainter.Sample
 			}
 
 			//brush.Color = from M5 via Bluetooth
-			brush.Color = new Color(50.0f, 50.0f, 50.0f, 1.0f);
-			material.color = new Color(50.0f, 50.0f, 50.0f, 0.5f);
+			brush.Color = new Color(1.0f, 0.5f, 0.0f, 1.0f);
+			material.color = new Color(1.0f, 0.5f, 0.0f, 1.0f);
 			GetComponent<MeshRenderer>().material.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 
 			foreach (var p in collision.contacts)

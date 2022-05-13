@@ -995,7 +995,7 @@ namespace Es.InkPainter
 		}
 
 		//MyCode(塗り面積を計算)
-		public int CompareRenderTexture()
+		public int CompareRenderTexture(Color myColor)
 		{
 			var ps = paintSet[0];
 			int diff_count = 0;
@@ -1021,22 +1021,23 @@ namespace Es.InkPainter
 				texture2D.ReadPixels(new Rect(0, 0, _renderTexture.width, _renderTexture.height), 0, 0);
 				texture2D.Apply();
 
-				Color[] origin_pixels = texture2D.GetPixels();
+				Color[] origin_pixels = texture2D.GetPixels();//色塗られてない
 
 				RenderTexture.active = currentRT;
 
-				Color[] paintedTex = newTex.GetPixels();
-
+				Color[] paintedTex = newTex.GetPixels();//色塗られてる
 				for (int i = 0; i < origin_pixels.Length; i++)
 				{
-					if (origin_pixels[i] != paintedTex[i])
+					if ((origin_pixels[i] != paintedTex[i]) && (Mathf.Abs(paintedTex[i].r - myColor.r) < 0.01f) && (Mathf.Abs(paintedTex[i].g - myColor.g) < 0.01f) && (Mathf.Abs(paintedTex[i].b - myColor.b) < 0.01f)){
 						diff_count++;
+					}
 				}
+
 				Destroy(_renderTexture);
 				Destroy(newTex);
 				Destroy(texture2D);
 
-				Debug.Log(diff_count);
+				//Debug.Log(diff_count);
 			}
 			return diff_count;
 		}
