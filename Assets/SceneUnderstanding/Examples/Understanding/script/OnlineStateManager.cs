@@ -37,6 +37,7 @@ public class OnlineStateManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        photonView.RPC(nameof(SetName), RpcTarget.All);
       if(isStart){
           if(player1Ready && player2Ready){
               if(!isStarted){
@@ -55,11 +56,13 @@ public class OnlineStateManager : MonoBehaviourPunCallbacks
 
    [PunRPC]
    private void SetName(){
-       if(playerNum == 1){
-           player1 = "playerName1";
-       }
-       else if(playerNum == 2){
-           player2 = "playerName2";
-       }
+    //    if(playerNum == 1){
+    //        player1 = "playerName1";
+    //    }
+    //    else if(playerNum == 2){
+    //        player2 = "playerName2";
+    //    }
+    player1 = "playerName1";
+    player2 = "playerName2";
    }
 }

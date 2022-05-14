@@ -73,3 +73,4 @@ MonoBehaviour:
   isStart: 1
   isStarted: 0
   CountDown: 5
+  playerNum: 0
