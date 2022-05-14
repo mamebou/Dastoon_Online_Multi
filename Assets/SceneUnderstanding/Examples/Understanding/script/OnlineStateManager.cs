@@ -21,10 +21,13 @@ public class OnlineStateManager : MonoBehaviourPunCallbacks
     GameObject SceneUnderstanding;
     TextMeshPro CountDownText;
     PhotonView photonView;
-    
+    private string playerName;
+    public int playerNum;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerName = CanasController.getPlayerName();
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
         CountDownText = GameObject.Find("CountDwon").GetComponent<TextMeshPro>();
         photonView = GetComponent<PhotonView>();
@@ -52,11 +55,11 @@ public class OnlineStateManager : MonoBehaviourPunCallbacks
 
    [PunRPC]
    private void SetName(){
-       if(player1 == null){
-           player2 = player2;
+       if(playerNum == 1){
+           player1 = "playerName1";
        }
-       else{
-           player1 = player1;
+       else if(playerNum == 2){
+           player2 = "playerName2";
        }
    }
 }
