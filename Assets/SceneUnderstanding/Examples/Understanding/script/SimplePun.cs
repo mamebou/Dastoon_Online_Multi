@@ -48,8 +48,6 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
-        var localPlayer = PhotonNetwork.LocalPlayer;
-        Debug.Log(localPlayer);
         if(playerNum == 1){
             onlineStateManager = PhotonNetwork.Instantiate("onlineStateManager", Vector3.zero, Quaternion.identity, 0);
             onlineStateManager.GetComponent<OnlineStateManager>().player1 = "1";
