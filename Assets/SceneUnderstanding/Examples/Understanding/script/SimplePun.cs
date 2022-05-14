@@ -51,11 +51,13 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         if(playerNum == 1){
             onlineStateManager = PhotonNetwork.Instantiate("onlineStateManager", Vector3.zero, Quaternion.identity, 0);
             onlineStateManager.GetComponent<OnlineStateManager>().player1 = "1";
+            onlineStateManager.GetComponent<OnlineStateManager>().playerNum = playerNum;
             stateManager.GetComponent<StateManager>().playerNum = 1;
         }
         else if(playerNum == 2){
             onlineStateManager = PhotonNetwork.Instantiate("onlineStateManager", Vector3.zero, Quaternion.identity, 0);
             onlineStateManager.GetComponent<OnlineStateManager>().player2 = "2";
+            onlineStateManager.GetComponent<OnlineStateManager>().playerNum = playerNum;
             stateManager.GetComponent<StateManager>().playerNum = 2;
         }
     }
