@@ -48,17 +48,23 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
-        if(playerNum == 1){
-            onlineStateManager = PhotonNetwork.Instantiate("onlineStateManager", Vector3.zero, Quaternion.identity, 0);
-            onlineStateManager.GetComponent<OnlineStateManager>().player1 = "1";
-            onlineStateManager.GetComponent<OnlineStateManager>().playerNum = playerNum;
-            stateManager.GetComponent<StateManager>().playerNum = 1;
+        Player[] players = PhotonNetwork.PlayerListOthers;
+        Player player = PhotonNetwork.LocalPlayer;
+        ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
+        properties["playerName"] = "hello";
+        PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
+    }
+
+    //カスタムプロパティがセットされたとき
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties["playerName"]);
+        Player[] players = PhotonNetwork.PlayerListOthers;
+        Player enemy = null;
+        if(players.Length != 0){
+            enemy = players[0];
         }
-        else if(playerNum == 2){
-            onlineStateManager = PhotonNetwork.Instantiate("onlineStateManager", Vector3.zero, Quaternion.identity, 0);
-            onlineStateManager.GetComponent<OnlineStateManager>().player2 = "2";
-            onlineStateManager.GetComponent<OnlineStateManager>().playerNum = playerNum;
-            stateManager.GetComponent<StateManager>().playerNum = 2;
-        }
+
+        Debug.Log(enemy);
     }
 }

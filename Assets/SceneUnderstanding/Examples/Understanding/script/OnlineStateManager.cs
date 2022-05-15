@@ -37,6 +37,7 @@ public class OnlineStateManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+    photonView.RPC(nameof(SetName), RpcTarget.All);
       if(isStart){
           if(player1Ready && player2Ready){
               if(!isStarted){
