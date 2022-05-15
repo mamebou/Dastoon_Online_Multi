@@ -13,14 +13,15 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     private String playerName;
     public GameObject stateManager;
     int playerNum;
-    bool isStart = true;
+    bool isStart = false;
     bool isStarted = false;
-    Player enemy = null;
-    Player player = null;
+    public Player enemy;
+    public Player player;
     public float CountDown = 5f;
     TextMeshPro CountDownText;
     GameObject SceneUnderstanding;
     public int MaxPlayer = 2;
+    ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
 
 
     // Use this for initialization
@@ -32,7 +33,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     void Update(){
         if(isStart){
-          if((bool)player.CustomProperties["isReady"] && (bool)enemy.CustomProperties["isReady"]){
+          if(player.CustomProperties["isReady"] is true && enemy.CustomProperties["isReady"] is true ){
               if(!isStarted){
                   CountDown -= Time.deltaTime;
                   CountDownText.text = CountDown.ToString("F2");
@@ -78,16 +79,15 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     //ルームに入室後に呼び出される
     public override void OnJoinedRoom(){
+        player = PhotonNetwork.LocalPlayer;
+        properties["playerName"] = "hello";
+        properties["isReady"] = false;
+        player.SetCustomProperties(properties);
         Player[] players = PhotonNetwork.PlayerListOthers;
         if(players.Length != 0){
             enemy = players[0];
             isStart = true;
         }
-        player = PhotonNetwork.LocalPlayer;
-        ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
-        properties["playerName"] = "hello";
-        properties["isReady"] = false;
-        PhotonNetwork.LocalPlayer.SetCustomProperties(properties);
     }
 
     //カスタムプロパティがセットされたとき
@@ -106,14 +106,13 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     //ほかのプレイヤーが参加時
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if(PhotonNetwork.CurrentRoom.PlayerCount == MaxPlayer){
-            Player[] players = PhotonNetwork.PlayerListOthers;
-            enemy = players[0];
-            isStart = true;
-        }
+        Player[] players = PhotonNetwork.PlayerListOthers;
+        enemy = players[0];
+        isStart = true;
     }
 
     public void Ready(){
-        player.CustomProperties["isReady"] = true;
+        properties["isReady"] = true;
+        player.SetCustomProperties(properties);
     }
 }
