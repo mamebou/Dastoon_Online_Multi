@@ -101,6 +101,8 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         //     enemy = players[0];
         //     isStart = true;
         // }
+
+        Debug.Log(changedProps);
     }
 
     //ほかのプレイヤーが参加時

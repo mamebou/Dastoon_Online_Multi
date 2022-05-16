@@ -56,16 +56,6 @@ public class StateManager : MonoBehaviour
 
     }
 
-    public void Ready(){
-        GameObject onlineStateManager = GameObject.Find("OnlineStateManager(Clone)");
-        if(playerNum == 1){
-            onlineStateManager.GetComponent<OnlineStateManager>().player1Ready = true;
-        }
-        else if(playerNum == 2){
-            onlineStateManager.GetComponent<OnlineStateManager>().player2Ready = true;
-        }
-    }
-
     public void createEnemy(){
         Transform[] allFloor = GetAllChild(sceneRoot);
         int numFloor = allFloor.Length;

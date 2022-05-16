@@ -19,10 +19,10 @@ public class CalScore : MonoBehaviour
     StateManager stateManager;
     private String playerName;
     TextMeshPro gameTimeText;
-    public float gameTime = 100f;
+    public float gameTime = 1000000f;
     GameObject SceneUnderstanding;
     public GameObject connectManager;
-    private SimplePun simplePun;
+    private SimplePun simplePun = new SimplePun();
     private int score = 0;
     public GameObject sceneRoot;
     private System.Random rand = new System.Random();
@@ -53,11 +53,13 @@ public class CalScore : MonoBehaviour
 
             if(countTime >= 10){
                 createEnemy();
+                countTime = 0f;
             }
         }
         
         if(gameTime <= 0){
             FinishGame();
+            Debug.Log("in");
         }
     }
 
