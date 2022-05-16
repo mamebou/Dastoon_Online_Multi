@@ -14,7 +14,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public GameObject stateManager;
     int playerNum;
     bool isStart = false;
-    bool isStarted = false;
+    public bool isStarted = false;
     public Player enemy;
     public Player player;
     public float CountDown = 5f;
