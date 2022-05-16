@@ -956,8 +956,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentObject: {fileID: 1062748839}
-  gameTime: 0
+  gameTime: 10000000
   connectManager: {fileID: 122037200}
+  sceneRoot: {fileID: 1062748839}
+  enemy: {fileID: 8326376658454904817, guid: 00b9ee838e8a65c4f95ba54b850e807f, type: 3}
 --- !u!1 &214023864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,6 +2008,8 @@ MonoBehaviour:
   parentObject: {fileID: 1062748839}
   gameTime: 0
   connectManager: {fileID: 0}
+  sceneRoot: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!114 &1346064937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2903,7 +2907,7 @@ PrefabInstance:
     - target: {fileID: 6776496116613308554, guid: fe72f5504b3431849943448835d2c406,
         type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CalArea
+      value: FinishGame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe72f5504b3431849943448835d2c406, type: 3}
