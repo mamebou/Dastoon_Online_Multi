@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class StateManager : MonoBehaviour
 { 
@@ -46,15 +47,6 @@ public class StateManager : MonoBehaviour
             prevBrushPosition = Brush.transform.position;
             currentTime = 0f;
         }
-
-        //敵の生成
-        if(isCreate){
-            if(createTime > 5f && sceneRoot.transform.childCount != 0){
-                createEnemy();
-                isCreate = false;
-            }  
-        }
-        //ここまで
             
     }
 
