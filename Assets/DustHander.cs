@@ -6,6 +6,7 @@ public class DustHander : MonoBehaviour
 {
 
     private Color color;
+    private int stageNum = 1;
 
     void Start()
     {
@@ -14,71 +15,34 @@ public class DustHander : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            // ê¬
-            color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+
+    }
+
+    public void ChangeStage(){
+        switch(stageNum){
+            case 1:
+                color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                stageNum += 1;
+                break;
+            case 2:
+                color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                stageNum += 1;
+                break;
+            case 3:
+                color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                stageNum += 1;
+                break;
+            case 4:
+                color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                stageNum += 1;
+                break;
+            case 5:
+                color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                stageNum += 1;
+                break;
+            default:
+                break;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            // êÖêF
-            color = new Color(0.0f, 1.0f, 1.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            // óŒ
-            color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            // â©
-            color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            // ûÚ
-            color = new Color(1.0f, 0.5f, 0.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            // ê‘
-            color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            // îí
-            color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            // çï
-            color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            // ó\îı
-            color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            // ó\îı
-            color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-
-        }
-        else
-        {
-
-        }
-
-
     }
 
     public Color SetColor()

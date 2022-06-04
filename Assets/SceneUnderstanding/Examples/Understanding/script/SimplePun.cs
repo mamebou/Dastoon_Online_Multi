@@ -21,6 +21,11 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     TextMeshPro CountDownText;
     GameObject SceneUnderstanding;
     public int MaxPlayer = 2;
+    public float stageTime = 100000f;
+    private DustHander dustHander;
+    public GameObject DustSensor;
+    public GameObject scoreDisplay;
+    private CalScore calscore;
     ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
 
 
@@ -29,6 +34,8 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         playerName = CanasController.getPlayerName();
         CountDownText = GameObject.Find("CountDwon").GetComponent<TextMeshPro>();
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
+        calscore = scoreDisplay.GetComponent<CalScore>();
+        dustHander = DustSensor.GetComponent<DustHander>();
     }
 
     void Update(){
@@ -44,6 +51,14 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                   isStart = false;
                   isStarted = true;
                 }
+            }
+        }
+
+        if(isStarted){
+            stageTime -= Time.deltaTime;
+            if(stageTime <= 0){
+                stageTime = 100000f;
+                dustHander.ChangeStage();
             }
         }
     }
@@ -82,6 +97,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         player = PhotonNetwork.LocalPlayer;
         properties["playerName"] = "hello";
         properties["isReady"] = false;
+        properties["isVsScore"] = false;
         player.SetCustomProperties(properties);
         Player[] players = PhotonNetwork.PlayerListOthers;
         if(players.Length != 0){
