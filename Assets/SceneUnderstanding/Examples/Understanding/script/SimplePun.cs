@@ -9,7 +9,6 @@ using Microsoft.MixedReality.SceneUnderstanding;
 
 public class SimplePun : MonoBehaviourPunCallbacks {
 
-    public GameObject onlineStateManager;
     private String playerName;
     public GameObject stateManager;
     int playerNum;
@@ -21,11 +20,16 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     TextMeshPro CountDownText;
     GameObject SceneUnderstanding;
     public int MaxPlayer = 2;
-    public float stageTime = 100000f;
+    public float stageTime = 10f;
     private DustHander dustHander;
     public GameObject DustSensor;
     public GameObject scoreDisplay;
     private CalScore calscore;
+    private int totalScore = 0;
+    private int myTotalScore = 0;
+    private TextMeshPro scoreText;
+    public int stageNum = 1;
+    
     ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
 
 
@@ -34,11 +38,14 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         playerName = CanasController.getPlayerName();
         CountDownText = GameObject.Find("CountDwon").GetComponent<TextMeshPro>();
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
+        scoreText= this.GetComponent<TextMeshPro>();
         calscore = scoreDisplay.GetComponent<CalScore>();
         dustHander = DustSensor.GetComponent<DustHander>();
     }
 
     void Update(){
+
+        //対戦開始判定
         if(isStart){
           if(player.CustomProperties["isReady"] is true && enemy.CustomProperties["isReady"] is true ){
               if(!isStarted){
@@ -50,15 +57,29 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                   SceneUnderstanding.GetComponent<SceneUnderstandingManager>().DisplayScanPlanes = true;
                   isStart = false;
                   isStarted = true;
+                  scoreText.text = "Stage" + stageNum.ToString("F2");
                 }
             }
         }
 
+        //対戦判定用                    
         if(isStarted){
             stageTime -= Time.deltaTime;
+            CountDownText.text = stageTime.ToString("F2");
             if(stageTime <= 0){
-                stageTime = 100000f;
-                dustHander.ChangeStage();
+                properties["isVsScore"] = true;
+                properties["StageScore"] = calscore.CalArea();
+                player.SetCustomProperties(properties);
+                stageTime = 10f;
+                if(stageNum == 5){
+                    ResultDisplay();
+                }
+                scoreText.text = "Stage" + stageNum.ToString("F2");
+                dustHander.ChangeStage(stageNum);
+            }
+
+            if(player.CustomProperties["isVsScore"] is true && enemy.CustomProperties["isVsScore"] is true){
+                totalScore += GetMyScore() + GetEnemyScore();
             }
         }
     }
@@ -118,7 +139,6 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         //     isStart = true;
         // }
 
-        Debug.Log(changedProps);
     }
 
     //ほかのプレイヤーが参加時
@@ -132,5 +152,26 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public void Ready(){
         properties["isReady"] = true;
         player.SetCustomProperties(properties);
+    }
+
+    public int GetMyScore(){
+        return (player.CustomProperties["stageScore"] is int score) ? score : 0;
+    }
+
+    public int GetEnemyScore(){
+        return (player.CustomProperties["stageScore"] is int score) ? score : 0;
+    }
+
+    public void ResultDisplay(){
+        isStarted = false;
+        int myPoint = (myTotalScore / totalScore) * 100;
+
+        if(myPoint >= 50){
+            scoreText.text = "You are winner !";
+        }
+        else{
+            scoreText.text = "You are loser";
+        }
+
     }
 }
