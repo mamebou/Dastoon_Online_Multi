@@ -19,7 +19,7 @@ public class CalScore : MonoBehaviour
     StateManager stateManager;
     private String playerName;
     TextMeshPro gameTimeText;
-    public float gameTime = 1000000f;
+    public float gameTime = 10f;
     GameObject SceneUnderstanding;
     public GameObject connectManager;
     private SimplePun simplePun = new SimplePun();
