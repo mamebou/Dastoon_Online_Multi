@@ -6,7 +6,6 @@ public class DustHander : MonoBehaviour
 {
 
     private Color color;
-    private int stageNum = 1;
 
     void Start()
     {
@@ -18,27 +17,22 @@ public class DustHander : MonoBehaviour
 
     }
 
-    public void ChangeStage(){
+    public void ChangeStage(int stageNum){
         switch(stageNum){
             case 1:
                 color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-                stageNum += 1;
                 break;
             case 2:
                 color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-                stageNum += 1;
                 break;
             case 3:
                 color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-                stageNum += 1;
                 break;
             case 4:
                 color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-                stageNum += 1;
                 break;
             case 5:
                 color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
-                stageNum += 1;
                 break;
             default:
                 break;

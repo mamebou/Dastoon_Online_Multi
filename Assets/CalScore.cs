@@ -45,22 +45,6 @@ public class CalScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(simplePun.isStarted == true){
-            scoreText.text = "Let's Cleaning!!\nTime:\n";
-            gameTime -= Time.deltaTime;
-            countTime += Time.deltaTime;
-            gameTimeText.text = gameTime.ToString("F2");
-
-            if(countTime >= 10){
-                createEnemy();
-                countTime = 0f;
-            }
-        }
-        
-        if(gameTime <= 0){
-            FinishGame();
-            Debug.Log("in");
-        }
     }
 
     public int CalArea()
@@ -92,6 +76,8 @@ public class CalScore : MonoBehaviour
         countTime = 0;
         timerState = true;
     }
+
+    //結果表示用
 
     public void createEnemy(){
         Transform[] allFloor = GetAllChild(sceneRoot);
