@@ -20,7 +20,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     TextMeshPro CountDownText;
     GameObject SceneUnderstanding;
     public int MaxPlayer = 2;
-    public float stageTime = 10f;
+    public float stageTime = 5f;
     private DustHander dustHander;
     public GameObject DustSensor;
     public GameObject scoreDisplay;
@@ -38,7 +38,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         playerName = CanasController.getPlayerName();
         CountDownText = GameObject.Find("CountDwon").GetComponent<TextMeshPro>();
         SceneUnderstanding = GameObject.Find("SceneUnderstandingManager");
-        scoreText= this.GetComponent<TextMeshPro>();
+        scoreText= scoreDisplay.GetComponent<TextMeshPro>();
         calscore = scoreDisplay.GetComponent<CalScore>();
         dustHander = DustSensor.GetComponent<DustHander>();
     }
@@ -50,7 +50,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
           if(player.CustomProperties["isReady"] is true && enemy.CustomProperties["isReady"] is true ){
               if(!isStarted){
                   CountDown -= Time.deltaTime;
-                  CountDownText.text = CountDown.ToString("F2");
+                  CountDownText.text = CountDown.ToString();
                 }
               
               if(CountDown <= 0f){
@@ -75,7 +75,9 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                     ResultDisplay();
                 }
                 scoreText.text = "Stage" + stageNum.ToString("F2");
+                stageNum += 1;
                 dustHander.ChangeStage(stageNum);
+                scoreText.text = "Stage" + stageNum.ToString("F2");
             }
 
             if(player.CustomProperties["isVsScore"] is true && enemy.CustomProperties["isVsScore"] is true){
