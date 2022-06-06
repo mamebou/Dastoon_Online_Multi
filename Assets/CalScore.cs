@@ -47,7 +47,7 @@ public class CalScore : MonoBehaviour
     {
     }
 
-    public int CalArea()
+    public int CalArea(Color myColor)
     {
         //�h��ꂽ�͈͂̌v�Z�B���Ȃ�d����(�v�Z���̓t���[�Y����)
         int allArea = 0;
@@ -56,18 +56,12 @@ public class CalScore : MonoBehaviour
         {
             if(childTransform.gameObject.name=="Floor"){
             GameObject grandchild = childTransform.transform.GetChild(0).gameObject;
-            int area = grandchild.transform.GetComponent<InkCanvas>().CompareRenderTexture(new Color(1.0f, 0.5f, 0.0f, 1.0f));
+            int area = grandchild.transform.GetComponent<InkCanvas>().CompareRenderTexture(myColor);
             allArea += area;
             }
         }
 
         return allArea;
-    }
-
-    public void FinishGame(){
-        simplePun.isStarted = false;
-        score = CalArea();
-        scoreText.text = playerName+ "'s Score:" + score + "\nTime:" + countTime.ToString("F1") + "\nDist:" + stateManager.distance.ToString("F2");
     }
 
     public void TimerStart()
