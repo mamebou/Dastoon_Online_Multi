@@ -67,14 +67,14 @@ public class SimplePun : MonoBehaviourPunCallbacks {
             stageTime -= Time.deltaTime;
             CountDownText.text = stageTime.ToString("F2");
             if(stageTime <= 0){
+                Color myColor = dustHander.SetColor();
                 properties["isVsScore"] = true;
-                properties["StageScore"] = calscore.CalArea();
+                properties["StageScore"] = calscore.CalArea(myColor);
                 player.SetCustomProperties(properties);
                 stageTime = 10f;
                 if(stageNum == 5){
                     ResultDisplay();
                 }
-                scoreText.text = "Stage" + stageNum.ToString("F2");
                 stageNum += 1;
                 dustHander.ChangeStage(stageNum);
                 scoreText.text = "Stage" + stageNum.ToString("F2");

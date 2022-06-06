@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/SceneUnderstanding/Examples/Home/Scenes/Home-Examples.unity
     guid: e0be1d44b746e4146a17c5eba3df5f4a
-  - enabled: 1
+  - enabled: 0
     path: Assets/top/scene/topScene.unity
     guid: 8363e805d88d4ae49910ab6b00697fa6
   - enabled: 1
