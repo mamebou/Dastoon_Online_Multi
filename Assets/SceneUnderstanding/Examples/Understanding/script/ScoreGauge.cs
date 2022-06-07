@@ -2,26 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Microsoft.MixedReality.Toolkit.UI;
+using System.Threading.Tasks;
+using TMPro;
 
 //scoreゲージ制御用スクリプト
 public class ScoreGauge : MonoBehaviour
 {
 
-    public int MaxValue = 100;
-    public int MinValue = 0;
-    private int count;
-    public Slider gauge; 
+    public GameObject indicatorObject;
+    private IProgressIndicator indicator;
+    float Count = 5f;
+    float value = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
-        gauge.minValue = 0;
-        gauge.maxValue = 100;
-        gauge.value = 50;
+        indicator = indicatorObject.GetComponent<IProgressIndicator>();
+        OpenIndigater();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Count -= Time.deltaTime;
+        if(Count <= 0){
+            UpdateGuage(value);
+            value += 0.1f;
+            Count = 5f;
+        }
+    }
+
+    private async void OpenIndigater(){
+        await indicator.OpenAsync();
+        indicator.Message = "let's buttle";
+        indicator.Progress = 0.5f;
+    }
+
+   public async void UpdateGuage(float value){
+        indicator.Progress = value;
     }
 }

@@ -29,6 +29,8 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     private int myTotalScore = 0;
     private TextMeshPro scoreText;
     public int stageNum = 1;
+    public GameObject gauge;
+    private ScoreGauge socreGauge;
     
     ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
 
@@ -41,6 +43,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         scoreText= scoreDisplay.GetComponent<TextMeshPro>();
         calscore = scoreDisplay.GetComponent<CalScore>();
         dustHander = DustSensor.GetComponent<DustHander>();
+        socreGauge = gauge.GetComponent<ScoreGauge>();
     }
 
     void Update(){
@@ -82,6 +85,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
             if(player.CustomProperties["isVsScore"] is true && enemy.CustomProperties["isVsScore"] is true){
                 totalScore += GetMyScore() + GetEnemyScore();
+                socreGauge.UpdateGuage((float)GetMyScore()/(float)totalScore);
             }
         }
     }
