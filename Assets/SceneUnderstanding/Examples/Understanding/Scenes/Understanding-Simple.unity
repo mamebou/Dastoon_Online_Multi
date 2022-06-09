@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -497,6 +497,7 @@ MonoBehaviour:
   DustSensor: {fileID: 508087796}
   scoreDisplay: {fileID: 195940158}
   stageNum: 1
+  gauge: {fileID: 1094976880}
 --- !u!4 &122037203
 Transform:
   m_ObjectHideFlags: 0
@@ -1180,6 +1181,14 @@ PrefabInstance:
     - target: {fileID: 4857426404074426, guid: 57d2436112e7d424da7e9a8e41c608dc, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857426404074426, guid: 57d2436112e7d424da7e9a8e41c608dc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857426404074426, guid: 57d2436112e7d424da7e9a8e41c608dc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4857426404074426, guid: 57d2436112e7d424da7e9a8e41c608dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2017,8 +2026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69e190234e6b0f479e78edf2fd7bf3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 0.5
-  minDistance: 0.3
+  maxDistance: 1.5
+  minDistance: 1
   minScaleRatio: 0.5
   moveThresholdAngle: 15
   directionSmoothness: 0.94
