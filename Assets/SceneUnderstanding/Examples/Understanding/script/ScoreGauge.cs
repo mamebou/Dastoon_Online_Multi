@@ -25,12 +25,6 @@ public class ScoreGauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Count -= Time.deltaTime;
-        if(Count <= 0){
-            UpdateGuage(value);
-            value += 0.1f;
-            Count = 5f;
-        }
     }
 
     private async void OpenIndigater(){
