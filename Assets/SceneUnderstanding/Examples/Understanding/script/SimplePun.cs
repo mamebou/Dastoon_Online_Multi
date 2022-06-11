@@ -164,8 +164,10 @@ public class SimplePun : MonoBehaviourPunCallbacks {
            if(player.CustomProperties["isVsScore"] is true){
                isMyCompare = true;
            }
-           if(enemy.CustomProperties["isVsScore"] is true){
-               isEnemyCompare = true;
+           if(enemy != null){
+                if(enemy.CustomProperties["isVsScore"] is true){
+                    isEnemyCompare = true;
+                }   
            }
         }
         // Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties["playerName"]);
