@@ -160,7 +160,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     //カスタムプロパティがセットされたとき
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        if(changedProps.Conrain("isVsScore")){
+        if(changedProps.ContainsKey("isVsScore")){
            if(player.CustomProperties["isVsScore"] is true){
                isMyCompare = true;
            }
