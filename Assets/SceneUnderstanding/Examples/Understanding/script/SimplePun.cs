@@ -95,23 +95,11 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 if(totalScore == 0){
                     totalScore = 1;
                 }
+                Debug.Log(GetMyScore());
                 socreGauge.UpdateGuage((float)GetMyScore()/(float)totalScore);
                 calscore.createEnemy();
             }
         }
-    }
-
-    public void CompareScore(){
-        if(player.CustomProperties["isVsScore"] is true && enemy.CustomProperties["isVsScore"] is true){
-                properties["isVsScore"] = false;
-                player.SetCustomProperties(properties);
-                totalScore += GetMyScore() + GetEnemyScore();
-                if(totalScore == 0){
-                    totalScore = 1;
-                }
-                socreGauge.UpdateGuage((float)GetMyScore()/(float)totalScore);
-                calscore.createEnemy();
-            }
     }
 
     void OnGUI()
@@ -195,11 +183,11 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     }
 
     public int GetMyScore(){
-        return (player.CustomProperties["stageScore"] is int score) ? score : 0;
+        return (player.CustomProperties["StageScore"] is int score) ? score : 0;
     }
 
     public int GetEnemyScore(){
-        return (player.CustomProperties["stageScore"] is int score) ? score : 0;
+        return (enemy.CustomProperties["StageScore"] is int score) ? score : 0;
     }
 
     public void ResultDisplay(){
