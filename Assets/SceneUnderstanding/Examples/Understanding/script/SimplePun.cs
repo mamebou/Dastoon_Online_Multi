@@ -31,6 +31,9 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public int stageNum = 1;
     public GameObject gauge;
     private ScoreGauge socreGauge;
+    private float compareTime = 2.0f;
+    private bool isMyCompare = false;
+    private bool isEnemyCompare = false;
     
     ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
 
@@ -83,11 +86,32 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 scoreText.text = "Stage" + stageNum.ToString("F2");
             }
 
-            if(player.CustomProperties["isVsScore"] is true && enemy.CustomProperties["isVsScore"] is true){
+            if(isMyCompare && isEnemyCompare){
+                properties["isVsScore"] = false;
+                isMyCompare = false;
+                isEnemyCompare = false;
+                player.SetCustomProperties(properties);
                 totalScore += GetMyScore() + GetEnemyScore();
+                if(totalScore == 0){
+                    totalScore = 1;
+                }
                 socreGauge.UpdateGuage((float)GetMyScore()/(float)totalScore);
+                calscore.createEnemy();
             }
         }
+    }
+
+    public void CompareScore(){
+        if(player.CustomProperties["isVsScore"] is true && enemy.CustomProperties["isVsScore"] is true){
+                properties["isVsScore"] = false;
+                player.SetCustomProperties(properties);
+                totalScore += GetMyScore() + GetEnemyScore();
+                if(totalScore == 0){
+                    totalScore = 1;
+                }
+                socreGauge.UpdateGuage((float)GetMyScore()/(float)totalScore);
+                calscore.createEnemy();
+            }
     }
 
     void OnGUI()
@@ -136,6 +160,14 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     //カスタムプロパティがセットされたとき
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
+        if(changedProps.Conrain("isVsScore")){
+           if(player.CustomProperties["isVsScore"] is true){
+               isMyCompare = true;
+           }
+           if(enemy.CustomProperties["isVsScore"] is true){
+               isEnemyCompare = true;
+           }
+        }
         // Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties["playerName"]);
         // Debug.Log(changedProps);
         // Player[] players = PhotonNetwork.PlayerListOthers;
