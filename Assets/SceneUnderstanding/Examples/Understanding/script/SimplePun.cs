@@ -92,11 +92,13 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 isEnemyCompare = false;
                 player.SetCustomProperties(properties);
                 totalScore += GetMyScore() + GetEnemyScore();
+                myTotalScore += GetMyScore();
                 if(totalScore == 0){
                     totalScore = 1;
                 }
-                Debug.Log(GetMyScore());
-                socreGauge.UpdateGuage((float)GetMyScore()/(float)totalScore);
+                float spaceOccupancy = (float)myTotalScore/(float)totalScore;
+                Debug.Log(spaceOccupancy);
+                socreGauge.UpdateGuage(spaceOccupancy);
                 calscore.createEnemy();
             }
         }
