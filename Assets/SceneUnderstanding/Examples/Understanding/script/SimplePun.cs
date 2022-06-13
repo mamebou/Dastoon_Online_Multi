@@ -81,9 +81,11 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 if(stageNum == 5){
                     ResultDisplay();
                 }
-                stageNum += 1;
-                dustHander.ChangeStage(stageNum);
-                scoreText.text = "Stage" + stageNum.ToString("F2");
+                else{
+                    stageNum += 1;
+                    dustHander.ChangeStage(stageNum);
+                    scoreText.text = "Stage" + stageNum.ToString("F2");
+                }
             }
 
             if(isMyCompare && isEnemyCompare){
@@ -97,7 +99,6 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                     totalScore = 1;
                 }
                 float spaceOccupancy = (float)myTotalScore/(float)totalScore;
-                Debug.Log(spaceOccupancy);
                 socreGauge.UpdateGuage(spaceOccupancy);
                 calscore.createEnemy();
             }
@@ -195,6 +196,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public void ResultDisplay(){
         isStarted = false;
         int myPoint = (myTotalScore / totalScore) * 100;
+        Debug.Log("result");
 
         if(myPoint >= 50){
             scoreText.text = "You are winner !";
