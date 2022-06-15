@@ -5,21 +5,27 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
 
-    [SerializeField]
-	private int wait = 3;
+    public GameObject enemy;  //①動かしたいオブジェクトをインスペクターから入れる。
+    public int speed = 5;  //オブジェクトが自動で動くスピード調整
+    Vector3 movePosition;  //②オブジェクトの目的地を保存
 
-    [SerializeField]
-	private GameObject enemy;
-
-    // Start is called before the first frame update
     void Start()
     {
-       
+        movePosition = moveRandomPosition();  //②実行時、オブジェクトの目的地を設定
     }
 
-    // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(0.001f, 0, 0);
+        if(movePosition == enemy.transform.position)  //②playerオブジェクトが目的地に到達すると、
+        {
+            movePosition = moveRandomPosition();  //②目的地を再設定
+        }
+        this.enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, movePosition, speed * Time.deltaTime);  //①②playerオブジェクトが, 目的地に移動, 移動速度
+    }
+
+    private Vector3 moveRandomPosition()  // 目的地を生成、xとyのポジションをランダムに値を取得 
+    {
+        Vector3 randomPosi = new Vector3(Random.Range(-7, 7), Random.Range(-4, 4), 5);
+        return randomPosi;
     }
 }

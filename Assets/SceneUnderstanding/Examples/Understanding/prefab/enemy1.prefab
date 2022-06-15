@@ -241,8 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b86db58a34992c468d749ab2bac63ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 3
-  enemy: {fileID: 0}
+  enemy: {fileID: 8326376658454904817}
+  speed: 1
 --- !u!114 &4489179987741083214
 MonoBehaviour:
   m_ObjectHideFlags: 0

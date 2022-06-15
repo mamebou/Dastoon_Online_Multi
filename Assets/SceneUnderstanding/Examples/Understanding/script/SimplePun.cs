@@ -34,7 +34,10 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     private float compareTime = 2.0f;
     private bool isMyCompare = false;
     private bool isEnemyCompare = false;
-    
+    private int enemyNum = 0;
+    private bool isDestroyEnemy = false;
+    private GameObject npc;
+
     ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
 
 
@@ -84,8 +87,13 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 else{
                     stageNum += 1;
                     dustHander.ChangeStage(stageNum);
+                    enemyNum = 0;
                     scoreText.text = "Stage" + stageNum.ToString("F2");
                 }
+            }
+            else if(stageTime <= 5 && isDestroyEnemy){
+                calscore.DestroyEnemy(npc);
+                isDestroyEnemy = false;
             }
 
             if(isMyCompare && isEnemyCompare){
@@ -96,11 +104,19 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 totalScore += GetMyScore() + GetEnemyScore();
                 myTotalScore += GetMyScore();
                 if(totalScore == 0){
-                    totalScore = 1;
+                    totalScore = 2;
                 }
+                if(myTotalScore == 0){
+                    myTotalScore = 1;
+                }
+
                 float spaceOccupancy = (float)myTotalScore/(float)totalScore;
                 socreGauge.UpdateGuage(spaceOccupancy);
-                calscore.createEnemy();
+                if(enemyNum == 0){
+                    enemyNum = 1;
+                    npc = calscore.createEnemy();
+                    isDestroyEnemy = true;
+                }
             }
         }
     }
