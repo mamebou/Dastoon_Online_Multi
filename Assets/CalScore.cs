@@ -73,12 +73,16 @@ public class CalScore : MonoBehaviour
 
     //結果表示用
 
-    public void createEnemy(){
+    public GameObject createEnemy(){
         Transform[] allFloor = GetAllChild(sceneRoot);
         int numFloor = allFloor.Length;
         int enemyPlace = rand.Next(0, numFloor - 1);
         Transform pos = allFloor[enemyPlace];
-        enemy = Instantiate(enemy, Camera.main.transform.position + Camera.main.transform.forward * 1.5f, new Quaternion(0f, 0f, 0f, 0f));
+        return Instantiate(enemy, Camera.main.transform.position + Camera.main.transform.forward * 1.5f, new Quaternion(0f, 0f, 0f, 0f));
+    }
+
+    public void DestroyEnemy(GameObject enemy){
+        Destroy(enemy);
     }
 
     private Transform[] GetAllChild(GameObject rootObject){
