@@ -1028,7 +1028,7 @@ namespace Es.InkPainter
 				Color[] paintedTex = newTex.GetPixels();//色塗られてる
 				for (int i = 0; i < origin_pixels.Length; i++)
 				{
-					if ((origin_pixels[i] != paintedTex[i]) /*&& (Mathf.Abs(paintedTex[i].r - myColor.r) < 0.01f) && (Mathf.Abs(paintedTex[i].g - myColor.g) < 0.01f) && (Mathf.Abs(paintedTex[i].b - myColor.b) < 0.01f)*/){
+					if ((origin_pixels[i] != paintedTex[i]) && (Mathf.Abs(paintedTex[i].r - myColor.r) < 0.1f) && (Mathf.Abs(paintedTex[i].g - myColor.g) < 0.1f) && (Mathf.Abs(paintedTex[i].b - myColor.b) < 0.1f)){
 						diff_count++;
 					}
 				}
