@@ -195,8 +195,8 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     public void ResultDisplay(){
         isStarted = false;
-        int myPoint = (myTotalScore / totalScore) * 100;
-        Debug.Log("result");
+        float myPoint = ((float)myTotalScore / (float)totalScore) * 100;
+        Debug.Log(myTotalScore);
 
         if(myPoint >= 50){
             scoreText.text = "You are winner !";
