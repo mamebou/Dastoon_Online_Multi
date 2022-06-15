@@ -78,7 +78,7 @@ public class CalScore : MonoBehaviour
         int numFloor = allFloor.Length;
         int enemyPlace = rand.Next(0, numFloor - 1);
         Transform pos = allFloor[enemyPlace];
-        enemy = Instantiate(enemy, new Vector3(pos.position.x, pos.position.y + 10f, pos.position.z), new Quaternion(0f, 0f, 0f, 0f));
+        enemy = Instantiate(enemy, Camera.main.transform.position + Camera.main.transform.forward * 1.5f, new Quaternion(0f, 0f, 0f, 0f));
     }
 
     private Transform[] GetAllChild(GameObject rootObject){
