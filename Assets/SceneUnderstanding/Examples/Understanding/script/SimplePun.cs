@@ -36,7 +36,10 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     private bool isEnemyCompare = false;
     private int enemyNum = 0;
     private bool isDestroyEnemy = false;
-    private GameObject npc;
+    public GameObject NormalEnemy;
+    public GameObject RareEnemy;
+    public GameObject[] enemys = new GameObject[2];
+
 
     ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
 
@@ -92,17 +95,19 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 }
             }
             else if(stageTime <= 5 && isDestroyEnemy){
-                calscore.DestroyEnemy(npc);
+                //calscore.DestroyEnemy(npc);
                 isDestroyEnemy = false;
             }
 
-            if(isMyCompare && isEnemyCompare){
+            if(isMyCompare && isEnemyCompare){//スコア比較用
                 properties["isVsScore"] = false;
                 isMyCompare = false;
                 isEnemyCompare = false;
                 player.SetCustomProperties(properties);
                 totalScore += GetMyScore() + GetEnemyScore();
                 myTotalScore += GetMyScore();
+                //暫定的に５とする
+                enemyNum = 5;
                 if(totalScore == 0){
                     totalScore = 2;
                 }
@@ -112,10 +117,10 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
                 float spaceOccupancy = (float)myTotalScore/(float)totalScore;
                 socreGauge.UpdateGuage(spaceOccupancy);
-                if(enemyNum == 0){
-                    enemyNum = 1;
-                    npc = calscore.createEnemy();
-                    isDestroyEnemy = true;
+                Array.Resize(ref enemys, enemyNum);
+                for(int i = 0; i < enemyNum; i++ ){
+                    Vector3 enemyPos = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
+                    enemys[i] = calscore.createEnemy(enemyPos);
                 }
             }
         }

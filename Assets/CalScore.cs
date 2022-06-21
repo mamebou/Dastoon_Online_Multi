@@ -28,6 +28,7 @@ public class CalScore : MonoBehaviour
     private System.Random rand = new System.Random();
     [SerializeField]
 	private GameObject enemy;
+    var rand = new Random();
 
     // Start is called before the first frame update
     void Start()
@@ -73,16 +74,20 @@ public class CalScore : MonoBehaviour
 
     //結果表示用
 
-    public GameObject createEnemy(){
+    public GameObject createEnemy(Vector3 enemyPos){
         Transform[] allFloor = GetAllChild(sceneRoot);
         int numFloor = allFloor.Length;
         int enemyPlace = rand.Next(0, numFloor - 1);
         Transform pos = allFloor[enemyPlace];
-        return Instantiate(enemy, Camera.main.transform.position + Camera.main.transform.forward * 1.5f, new Quaternion(0f, 0f, 0f, 0f));
+        return Instantiate(enemy, enemyPos, new Quaternion(0f, 0f, 0f, 0f));
     }
 
     public void DestroyEnemy(GameObject enemy){
         Destroy(enemy);
+    }
+
+    public Vector3 DecidePosition(int NumOfEnemy){
+        int value = rand.Next(minValue: 0, maxValue: 7);
     }
 
     private Transform[] GetAllChild(GameObject rootObject){
