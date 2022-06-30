@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -498,6 +498,13 @@ MonoBehaviour:
   scoreDisplay: {fileID: 195940158}
   stageNum: 1
   gauge: {fileID: 1094976880}
+  NormalEnemy: {fileID: 2873887734263050165, guid: dac51f57d9df85248adcd79888606fea,
+    type: 3}
+  RareEnemy: {fileID: 1681697475292411090, guid: 603f71ba4496a27448c450fc1a4772a6,
+    type: 3}
+  enemys:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &122037203
 Transform:
   m_ObjectHideFlags: 0
@@ -2145,6 +2152,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6041f4a23cfbef489aa62258b35f481, type: 3}
+--- !u!1 &1337417429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4541138717772488372, guid: 4e7abe5a6db0abc43be532eead7ba806,
+    type: 3}
+  m_PrefabInstance: {fileID: 10303198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &1337417438
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337417429}
+  m_Mesh: {fileID: 0}
 --- !u!1 &1346064935
 GameObject:
   m_ObjectHideFlags: 0
