@@ -39,6 +39,10 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public GameObject NormalEnemy;
     public GameObject RareEnemy;
     public GameObject[] enemys = new GameObject[2];
+    private float[] range = new float[2];
+    Vector3 position = new Vector3(0,0,0);
+    System.Random rand = new System.Random();
+
 
 
     ExitGames.Client.Photon.Hashtable properties = new ExitGames.Client.Photon.Hashtable();
@@ -100,14 +104,15 @@ public class SimplePun : MonoBehaviourPunCallbacks {
             }
 
             if(isMyCompare && isEnemyCompare){//スコア比較用
+                //ステータス更新
                 properties["isVsScore"] = false;
                 isMyCompare = false;
                 isEnemyCompare = false;
                 player.SetCustomProperties(properties);
+                //スコア割合計算
                 totalScore += GetMyScore() + GetEnemyScore();
                 myTotalScore += GetMyScore();
-                //暫定的に５とする
-                enemyNum = 5;
+                //全て0の場合は５０：５０となるよう設定
                 if(totalScore == 0){
                     totalScore = 2;
                 }
@@ -116,14 +121,115 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 }
 
                 float spaceOccupancy = (float)myTotalScore/(float)totalScore;
+                range = GetRange(0.5f - spaceOccupancy);
+                enemyNum = GetEnemyNum(0.5f - spaceOccupancy);
+                int dirNum = rand.Next(1,4);
+
                 socreGauge.UpdateGuage(spaceOccupancy);
                 Array.Resize(ref enemys, enemyNum);
                 for(int i = 0; i < enemyNum; i++ ){
-                    Vector3 enemyPos = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
-                    enemys[i] = calscore.createEnemy(enemyPos);
+                    position = GetEnemyPosition(range[0]+((float)i/10), rand.Next(1,4));
+                    enemys[i] = CreateEnemy(position, true);
                 }
             }
         }
+    }
+
+    // エネミー生成
+    public GameObject CreateEnemy(Vector3 position, bool isNomal){
+        if (isNomal){
+            return Instantiate(NormalEnemy, position, Quaternion.identity);
+        }
+        else{
+            return Instantiate(RareEnemy, position, Quaternion.identity);
+        }
+        
+    }
+
+    //エネミー数決定
+    public int GetEnemyNum(float diffScore){
+        if(-0.5f <= diffScore && diffScore < -0.4f){
+            return 9;
+        }
+        else if(-0.4f <= diffScore && diffScore < -0.3f){
+            return 8;
+        }
+        else if(-0.3f <= diffScore && diffScore < -0.2f){
+            return 7;
+        }
+        else if(-0.2f <= diffScore && diffScore < -0.1f){
+            return 6;
+        }
+        else if(-0.1f <= diffScore && diffScore < 0.0f){
+            return 5;
+        }
+        else if(0.0f <= diffScore && diffScore < 0.1f){
+            return 4;
+        }
+        else if(0.1f <= diffScore && diffScore < 0.2f){
+            return 3;
+        }
+        else if(0.2f <= diffScore && diffScore < 0.3f){
+            return 2;
+        }
+        else if(0.3f <= diffScore && diffScore <= 0.4f){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+        return 5;
+    }
+
+    //エネミー生成範囲決定
+    public float[] GetRange(float diffScore){
+        float[] range = new float[2];
+        if(-0.5f <= diffScore && diffScore < -0.3f){
+            range[0] = 0.5f;
+            range[1] = 1.5f;
+            return range;
+        }
+        else if(-0.3f <= diffScore && diffScore < -0.1f){
+            range[0] = 0.8f;
+            range[1] = 1.8f;
+            return range;
+        }
+        else if(-0.1f <= diffScore && diffScore < 0.1f){
+            range[0] = 1.0f;
+            range[1] = 2.0f;
+            return range;
+        }
+        else if(0.1f <= diffScore && diffScore < 0.3f){
+            range[0] = 1.2f;
+            range[1] = 2.2f;
+            return range;
+        }
+        else if(0.3f <= diffScore && diffScore <= 0.5f){
+            range[0] = 1.4f;
+            range[1] = 2.4f;
+            return range;
+        }
+        range[0] = 1.0f;
+        range[1] = 2.0f;
+        return range;
+    }
+
+    //エネミーのポジション決定
+    public Vector3 GetEnemyPosition(float distance, int direction){
+        switch (direction)
+        {
+            case 1:
+                return Camera.main.transform.position + Camera.main.transform.forward * distance;
+            case 2:
+                return Camera.main.transform.position + Camera.main.transform.right * distance;
+            case 3:
+                return  Camera.main.transform.position + Camera.main.transform.right * -1 * distance;
+            case 4: 
+                return Camera.main.transform.position + Camera.main.transform.forward * -1 * distance;
+            default:
+                break;
+        }
+        return Camera.main.transform.position + Camera.main.transform.forward * distance;
     }
 
     void OnGUI()

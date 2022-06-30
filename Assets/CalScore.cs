@@ -25,10 +25,9 @@ public class CalScore : MonoBehaviour
     private SimplePun simplePun = new SimplePun();
     private int score = 0;
     public GameObject sceneRoot;
-    private System.Random rand = new System.Random();
     [SerializeField]
 	private GameObject enemy;
-    var rand = new Random();
+    System.Random rand = new System.Random();
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +87,7 @@ public class CalScore : MonoBehaviour
 
     public Vector3 DecidePosition(int NumOfEnemy){
         int value = rand.Next(minValue: 0, maxValue: 7);
+        return new Vector3(0,0,0);
     }
 
     private Transform[] GetAllChild(GameObject rootObject){
