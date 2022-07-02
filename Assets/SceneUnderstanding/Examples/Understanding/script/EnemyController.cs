@@ -25,7 +25,11 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 moveRandomPosition()  // 目的地を生成、xとyのポジションをランダムに値を取得 
     {
-        Vector3 randomPosi = new Vector3(Random.Range(-7, 7), Random.Range(-4, 4), 5);
+        Vector3 randomPosi = new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 5);
         return randomPosi;
+    }
+
+    public void DestroyEnemy(){
+        Destroy(this.gameObject);
     }
 }
