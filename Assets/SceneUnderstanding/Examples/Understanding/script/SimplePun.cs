@@ -42,6 +42,9 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     private float[] range = new float[2];
     Vector3 position = new Vector3(0,0,0);
     System.Random rand = new System.Random();
+    private int additionalPoint;
+    private int StageTotalScore;
+    private int MyStageTotalScore;
 
 
 
@@ -98,10 +101,6 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                     scoreText.text = "Stage" + stageNum.ToString("F2");
                 }
             }
-            else if(stageTime <= 5 && isDestroyEnemy){
-                //calscore.DestroyEnemy(npc);
-                isDestroyEnemy = false;
-            }
 
             if(isMyCompare && isEnemyCompare){//スコア比較用
                 //ステータス更新
@@ -110,28 +109,32 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 isEnemyCompare = false;
                 player.SetCustomProperties(properties);
                 //スコア割合計算
-                totalScore += GetMyScore() + GetEnemyScore();
-                myTotalScore += GetMyScore();
+                MyStageTotalScore = GetMyScore() + additionalPoint;
+                additionalPoint = 0;
+                StageTotalScore = GetMyScore() + GetEnemyScore();
+                totalScore += StageTotalScore;
+                myTotalScore += MyStageTotalScore;
                 //全て0の場合は５０：５０となるよう設定
-                if(totalScore == 0){
-                    totalScore = 2;
+                if(StageTotalScore == 0){
+                    StageTotalScore = 2;
                 }
-                if(myTotalScore == 0){
-                    myTotalScore = 1;
+                if(MyStageTotalScore == 0){
+                    MyStageTotalScore = 1;
                 }
 
                 //前のステージから残っているエネミーを削除
                 DestroyEnemy(enemys);
 
-                float spaceOccupancy = (float)myTotalScore/(float)totalScore;
+                float spaceOccupancy = (float)MyStageTotalScore/(float)StageTotalScore;
                 range = GetRange(0.5f - spaceOccupancy);
                 enemyNum = GetEnemyNum(0.5f - spaceOccupancy);
 
                 socreGauge.UpdateGuage(spaceOccupancy);
                 Array.Resize(ref enemys, enemyNum);
                 for(int i = 0; i < enemyNum; i++ ){
+                    int num = rand.Next(1,20);
                     position = GetEnemyPosition(range[0]+((float)i/10), i+1);
-                    enemys[i] = CreateEnemy(position, true);
+                    enemys[i] = CreateEnemy(position, isNormalEnemy(num));
                 }
             }
         }
@@ -151,13 +154,25 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public void DestroyEnemy(GameObject[] enemys){
         if(enemys.Length != 0){
             for(int i=0; i<enemys.Length; i++){
-                Destroy(enemys[i]);
+                if(enemys[i] != null){
+                    Destroy(enemys[i]);
+                }
             }
+        }
+    }
+
+    public bool isNormalEnemy(int num){
+        if(num == 1 || num == 10){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
     //エネミー数決定
     public int GetEnemyNum(float diffScore){
+        Debug.Log(diffScore);
         if(-0.5f <= diffScore && diffScore < -0.4f){
             return 9;
         }
@@ -188,7 +203,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
         else {
             return 0;
         }
-        return 5;
+        return 0;
     }
 
     //エネミー生成範囲決定
@@ -341,7 +356,6 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public void ResultDisplay(){
         isStarted = false;
         float myPoint = ((float)myTotalScore / (float)totalScore) * 100;
-        Debug.Log(myTotalScore);
 
         if(myPoint >= 50){
             scoreText.text = "You are winner !";
@@ -350,5 +364,9 @@ public class SimplePun : MonoBehaviourPunCallbacks {
             scoreText.text = "You are loser";
         }
 
+    }
+
+    public void AddScore(int score){
+        this.additionalPoint += score;
     }
 }
