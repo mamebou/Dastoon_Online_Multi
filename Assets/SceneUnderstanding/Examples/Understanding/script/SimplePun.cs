@@ -120,15 +120,17 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                     myTotalScore = 1;
                 }
 
+                //前のステージから残っているエネミーを削除
+                DestroyEnemy(enemys);
+
                 float spaceOccupancy = (float)myTotalScore/(float)totalScore;
                 range = GetRange(0.5f - spaceOccupancy);
                 enemyNum = GetEnemyNum(0.5f - spaceOccupancy);
-                int dirNum = rand.Next(1,4);
 
                 socreGauge.UpdateGuage(spaceOccupancy);
                 Array.Resize(ref enemys, enemyNum);
                 for(int i = 0; i < enemyNum; i++ ){
-                    position = GetEnemyPosition(range[0]+((float)i/10), rand.Next(1,4));
+                    position = GetEnemyPosition(range[0]+((float)i/10), i+1);
                     enemys[i] = CreateEnemy(position, true);
                 }
             }
@@ -144,6 +146,14 @@ public class SimplePun : MonoBehaviourPunCallbacks {
             return Instantiate(RareEnemy, position, Quaternion.identity);
         }
         
+    }
+
+    public void DestroyEnemy(GameObject[] enemys){
+        if(enemys.Length != 0){
+            for(int i=0; i<enemys.Length; i++){
+                Destroy(enemys[i]);
+            }
+        }
     }
 
     //エネミー数決定
@@ -185,31 +195,31 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     public float[] GetRange(float diffScore){
         float[] range = new float[2];
         if(-0.5f <= diffScore && diffScore < -0.3f){
-            range[0] = 0.5f;
+            range[0] = 2.5f;
             range[1] = 1.5f;
             return range;
         }
         else if(-0.3f <= diffScore && diffScore < -0.1f){
-            range[0] = 0.8f;
+            range[0] = 3.5f;
             range[1] = 1.8f;
             return range;
         }
         else if(-0.1f <= diffScore && diffScore < 0.1f){
-            range[0] = 1.0f;
+            range[0] = 4.5f;
             range[1] = 2.0f;
             return range;
         }
         else if(0.1f <= diffScore && diffScore < 0.3f){
-            range[0] = 1.2f;
+            range[0] = 5.5f;
             range[1] = 2.2f;
             return range;
         }
         else if(0.3f <= diffScore && diffScore <= 0.5f){
-            range[0] = 1.4f;
+            range[0] = 6.5f;
             range[1] = 2.4f;
             return range;
         }
-        range[0] = 1.0f;
+        range[0] = 6.5f;
         range[1] = 2.0f;
         return range;
     }
@@ -226,6 +236,14 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 return  Camera.main.transform.position + Camera.main.transform.right * -1 * distance;
             case 4: 
                 return Camera.main.transform.position + Camera.main.transform.forward * -1 * distance;
+            case 5: 
+                return Camera.main.transform.position + Camera.main.transform.forward * distance +  Camera.main.transform.right * distance;
+            case 6: 
+                return Camera.main.transform.position + Camera.main.transform.forward * distance +  Camera.main.transform.right * -1 * distance;
+            case 7: 
+                return Camera.main.transform.position + Camera.main.transform.forward * -1 * distance +  Camera.main.transform.right * distance;
+            case 8:
+                return Camera.main.transform.position + Camera.main.transform.forward * -1 * distance +  Camera.main.transform.right * -1 * distance;
             default:
                 break;
         }
