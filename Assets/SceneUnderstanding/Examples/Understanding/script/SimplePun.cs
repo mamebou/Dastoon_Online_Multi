@@ -45,8 +45,6 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     private int additionalPoint;
     private int StageTotalScore;
     private int MyStageTotalScore;
-    //テスト用
-    public GameObject testPlayer;
 
 
 
@@ -76,7 +74,6 @@ public class SimplePun : MonoBehaviourPunCallbacks {
               
               if(CountDown <= 0f){
                   SceneUnderstanding.GetComponent<SceneUnderstandingManager>().DisplayScanPlanes = true;
-                  testPlayer.GetComponent<Rigidbody>().useGravity = true;
                   isStart = false;
                   isStarted = true;
                   scoreText.text = "Stage" + stageNum.ToString("F2");
@@ -95,7 +92,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 player.SetCustomProperties(properties);
                 stageTime = 10f;
                 if(stageNum == 5){
-                    ResultDisplay();
+                    stageNum += 1;
                 }
                 else{
                     stageNum += 1;
@@ -128,7 +125,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 //前のステージから残っているエネミーを削除
                 DestroyEnemy(enemys);
 
-                float spaceOccupancy = (float)myotalScore/(float)totalScore;
+                float spaceOccupancy = (float)myTotalScore/(float)totalScore;
                 range = GetRange(0.5f - spaceOccupancy);
                 enemyNum = GetEnemyNum(0.5f - spaceOccupancy);
 
@@ -136,9 +133,12 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 Array.Resize(ref enemys, enemyNum);
                 for(int i = 0; i < enemyNum; i++ ){
                     int num = rand.Next(1,20);
-                    Debug.Log(num + " " + isNormalEnemy(num));
                     position = GetEnemyPosition(range[0]+((float)i/10), i+1);
                     enemys[i] = CreateEnemy(position, isNormalEnemy(num));
+                }
+
+                if(stageNum == 6){
+                    ResultDisplay();
                 }
             }
         }
