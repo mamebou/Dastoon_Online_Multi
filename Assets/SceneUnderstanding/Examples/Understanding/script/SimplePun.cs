@@ -128,7 +128,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 //前のステージから残っているエネミーを削除
                 DestroyEnemy(enemys);
 
-                float spaceOccupancy = (float)MyStageTotalScore/(float)StageTotalScore;
+                float spaceOccupancy = (float)myotalScore/(float)totalScore;
                 range = GetRange(0.5f - spaceOccupancy);
                 enemyNum = GetEnemyNum(0.5f - spaceOccupancy);
 
@@ -136,6 +136,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
                 Array.Resize(ref enemys, enemyNum);
                 for(int i = 0; i < enemyNum; i++ ){
                     int num = rand.Next(1,20);
+                    Debug.Log(num + " " + isNormalEnemy(num));
                     position = GetEnemyPosition(range[0]+((float)i/10), i+1);
                     enemys[i] = CreateEnemy(position, isNormalEnemy(num));
                 }
@@ -166,10 +167,10 @@ public class SimplePun : MonoBehaviourPunCallbacks {
 
     public bool isNormalEnemy(int num){
         if(num == 1 || num == 10){
-            return true;
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
 
