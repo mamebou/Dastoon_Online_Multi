@@ -23,7 +23,7 @@ public class DustHander : MonoBehaviour
                 color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
                 break;
             case 2:
-                color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+                color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
                 break;
             case 3:
                 color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
