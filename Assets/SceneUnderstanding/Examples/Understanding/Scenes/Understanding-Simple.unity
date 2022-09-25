@@ -498,9 +498,9 @@ MonoBehaviour:
   scoreDisplay: {fileID: 195940158}
   stageNum: 1
   gauge: {fileID: 1094976880}
-  NormalEnemy: {fileID: 919132149155446097, guid: bdc835be57a9c3c49b775dbd396317bb,
+  NormalEnemy: {fileID: 1456912068458004094, guid: e180e99657361024fa3e16eb2170b556,
     type: 3}
-  RareEnemy: {fileID: 919132149155446097, guid: 3f0d2e80d7dfc584dac4ec96fde768ba,
+  RareEnemy: {fileID: 5434923300323577635, guid: 8a2f1c1542a3a5642abac3c1906a6295,
     type: 3}
   enemys:
   - {fileID: 0}
