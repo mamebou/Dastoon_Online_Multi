@@ -45,6 +45,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
     private int additionalPoint;
     private int StageTotalScore;
     private int MyStageTotalScore;
+    public GameObject demoPlayer;
 
 
 
@@ -74,6 +75,7 @@ public class SimplePun : MonoBehaviourPunCallbacks {
               
               if(CountDown <= 0f){
                   SceneUnderstanding.GetComponent<SceneUnderstandingManager>().DisplayScanPlanes = true;
+                  demoPlayer.GetComponent<Rigidbody>().useGravity = true;
                   isStart = false;
                   isStarted = true;
                   scoreText.text = "Stage" + stageNum.ToString("F2");

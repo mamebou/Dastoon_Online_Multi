@@ -29,7 +29,7 @@ public class ScoreGauge : MonoBehaviour
 
     private async void OpenIndigater(){
         await indicator.OpenAsync();
-        indicator.Message = "let's buttle";
+        indicator.Message = "player1 vs player2";
         indicator.Progress = 0.5f;
     }
 
