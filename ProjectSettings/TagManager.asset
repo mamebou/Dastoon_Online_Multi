@@ -19,6 +19,7 @@ TagManager:
   - data3Text
   - data2Text
   - nomal_enemy
+  - rare_enemy
   layers:
   - Default
   - TransparentFX

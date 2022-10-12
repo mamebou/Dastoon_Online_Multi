@@ -417,9 +417,10 @@ GameObject:
   - component: {fileID: 4622779397717857689}
   - component: {fileID: 1670015532160736121}
   - component: {fileID: 2284266482634700713}
+  - component: {fileID: 4401574060843875066}
   m_Layer: 0
   m_Name: sampleEnemy (1)Prefab
-  m_TagString: Untagged
+  m_TagString: rare_enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -473,6 +474,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!33 &4401574060843875066
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434923300323577635}
+  m_Mesh: {fileID: 0}
 --- !u!1 &8464664044564252856
 GameObject:
   m_ObjectHideFlags: 0
