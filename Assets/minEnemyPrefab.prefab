@@ -93,9 +93,10 @@ GameObject:
   - component: {fileID: 2268738212289275076}
   - component: {fileID: 1151958428349429839}
   - component: {fileID: -1577694517759123261}
+  - component: {fileID: -3886624718775394576}
   m_Layer: 0
   m_Name: minEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: nomal_enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +150,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!33 &-3886624718775394576
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456912068458004094}
+  m_Mesh: {fileID: 0}
 --- !u!1 &2401862084938476193
 GameObject:
   m_ObjectHideFlags: 0
