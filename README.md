@@ -2,11 +2,7 @@
 
 複合現実を用いた掃除活性化システム
 
-Paintモード
-
-# Demo
-
-[YouTube](https://youtu.be/msgvNG8r6ms)
+battleモード
 
 # Features
 
@@ -33,5 +29,5 @@ Release ARM64 Device
 
 # Author
 
-* Yukihiro KAERIYAMA
+* harutaka abe
 * 青山学院大学 ロペズ研究室
